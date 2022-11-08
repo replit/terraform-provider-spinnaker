@@ -13,6 +13,18 @@
 
     in
     {
+      devShells = forAllSystems (system:
+        let
+          pkgs = nixpkgsFor.${system};
+        in {
+          default = pkgs.mkShell {
+            nativeBuildInputs = with pkgs; [
+              go 
+              gopls
+            ];
+          };
+        });
+
       packages = forAllSystems (system:
         let
           pkgs = nixpkgsFor.${system};
@@ -24,7 +36,7 @@
 
             src = ./.;
 
-            vendorSha256 = "sha256-1Cgbw7Edvut8pN0lrvHO39TwA59vl5Yfv3TSJEBIoVE=";
+            vendorSha256 = "sha256-FiM399YxHM0jhp8RaOqr8cewsxZllk73Rk6U1gkUNhI=";
           };
         });
 
