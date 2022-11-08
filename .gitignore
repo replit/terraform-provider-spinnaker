@@ -7,3 +7,9 @@ pipelines
 vendor/*
 /dist/
 *.key
+
+# direnv
+.direnv
+
+# Nix
+result
